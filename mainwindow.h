@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <form.h>
+#include <game.h>
 
 namespace Ui {
 class MainWindow;
@@ -15,8 +17,12 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_playButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    Game game;
 };
 
 #endif // MAINWINDOW_H
