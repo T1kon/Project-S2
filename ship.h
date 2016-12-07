@@ -11,7 +11,8 @@ class Ship: public QObject, public QGraphicsPixmapItem
 private:
     double speedX, speedY;
     unsigned int health;
-    const double ACCELERATION = 1.0;
+    double acceleration;
+    const double MAX_ACCELERATION = 1.0;
     const double MAX_SPEED = 5.0;
     const double MAX_BACK_SPEED = MAX_SPEED / 5.0;
     const double ROTATION_SPEED = 5;
@@ -22,10 +23,11 @@ protected:
 public:
     Ship();
 public slots:
+    void addAcceleration(double dir);
     void accelerate();
-    void slow();
-    void rotate_left();
-    void rotate_right();
+   // void slow();
+    void rotateLeft();
+    void rotateRight();
     void move();
 };
 

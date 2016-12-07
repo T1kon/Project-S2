@@ -11,6 +11,7 @@ Ship::Ship()
     setOffset(-10,-25);
     speedX = 0;
     speedY = 0;
+    acceleration = 0.0;
     health = MAX_HEALTH;
     CanRotateL = true;
     CanRotateR = true;
@@ -23,62 +24,67 @@ Ship::Ship()
 
 }
 
+void Ship::addAcceleration(double dir)
+{
+    if (abs(acceleration) < MAX_ACCELERATION){
+        acceleration += dir*0.1;
+    }
+    qDebug() << "accel:" << acceleration;
+}
+
 void Ship::accelerate()
 {
     double radian = (90 - this->rotation())/180*M_PI;
-    speedX = speedX + ACCELERATION*cos(radian);
+    speedX += acceleration*cos(radian);
     if (abs(speedX) > MAX_SPEED){
         (speedX < 0)? speedX=-MAX_SPEED : speedX=MAX_SPEED;
     }
-    speedY = speedY - ACCELERATION*sin(radian);
+    speedY -= acceleration*sin(radian);
     if (abs(speedY) > MAX_SPEED){
         (speedY < 0)? speedY=-MAX_SPEED : speedY=MAX_SPEED;
     }
-    qDebug() << "speed increased\n";
 }
 
-void Ship::slow()
-{
-    double radian = (90 - this->rotation())/180*M_PI;
-    speedX = speedX - ACCELERATION*cos(radian);
-    if (abs(speedX) > MAX_BACK_SPEED){
-        (speedX < 0)? speedX=-MAX_BACK_SPEED : speedX=MAX_BACK_SPEED;
-    }
-    speedY = speedY + ACCELERATION*sin(radian);
-    if (abs(speedY) > MAX_BACK_SPEED){
-        (speedY < 0)? speedY=-MAX_BACK_SPEED : speedY=MAX_BACK_SPEED;
-    }
-    qDebug() << "speed decreased\n";
-}
+//void Ship::slow()
+//{
+//    double radian = (90 - this->rotation())/180*M_PI;
+//    speedX = speedX - acceleration*cos(radian);
+//    if (abs(speedX) > MAX_BACK_SPEED){
+//        (speedX < 0)? speedX=-MAX_BACK_SPEED : speedX=MAX_BACK_SPEED;
+//    }
+//    speedY = speedY + acceleration*sin(radian);
+//    if (abs(speedY) > MAX_BACK_SPEED){
+//        (speedY < 0)? speedY=-MAX_BACK_SPEED : speedY=MAX_BACK_SPEED;
+//    }
+//    qDebug() << "speed decreased\n";
+//}
 
-void Ship::rotate_left()
+void Ship::rotateLeft()
 {
     this->setRotation(this->rotation() - ROTATION_SPEED);
-    qDebug() << "rotated left\n" << rotation()
-             <<" sin(" << sin(rotation()*M_PI/180) << ")";
 }
 
-void Ship::rotate_right()
+void Ship::rotateRight()
 {
     this->setRotation(this->rotation() + ROTATION_SPEED);
-    qDebug() << "rotated right\n" << rotation()
-                <<" sin(" << sin(rotation()*M_PI/180) << ")";
 }
 
 
 void Ship::move()
 {
     if (canMoveF){
-        accelerate();
+        addAcceleration(1);
     }
     if (canMoveB){
-        slow();
+        addAcceleration(-1);
     }
     if (CanRotateL){
-        rotate_left();
+        rotateLeft();
     }
     if (CanRotateR){
-        rotate_right();
+        rotateRight();
     }
+
+    accelerate();
     this->setPos(this->x() + speedX, this->y() + speedY);
 }
