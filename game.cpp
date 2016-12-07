@@ -1,8 +1,12 @@
 #include "Game.h"
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
+#include "shipplayer.h"
 
 Game::Game(){
+
+    setFocusPolicy(Qt::StrongFocus);
+    startTimer(1000/60);
 
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0, 0, 800, 600);
@@ -17,4 +21,9 @@ Game::Game(){
     rect->setRect(0,0,100,100);
 
     scene->addItem(rect);
+
+    ShipPlayer * p = new ShipPlayer();
+    scene->addItem(p);
+    p->setFlag(QGraphicsItem::ItemIsFocusable);
+    p->setFocus();
 }
