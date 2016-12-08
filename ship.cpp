@@ -38,7 +38,7 @@ void Ship::setShip()
 
     shootTimer = new QTimer();
     connect(shootTimer, SIGNAL(timeout()), this, SLOT(fire()));
-    shootTimer->start(1000/2);
+    shootTimer->start(0);
 }
 
 void Ship::addAcceleration(double dir)
@@ -111,5 +111,6 @@ void Ship::fire()
         double radian = (90 - this->rotation())/180*M_PI;
         Bullet * bullet = new Bullet(x() + 12.5*cos(radian), y() - 35*sin(radian), rotation());
         scene()->addItem(bullet);
+        shootTimer->start(1000/2);
     }
 }
