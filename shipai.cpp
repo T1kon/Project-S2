@@ -2,7 +2,12 @@
 
 ShipAI::ShipAI()
 {
+    if (counter.getCount() < 2){
 
+    }
+    else{
+        delete this;
+    }
 }
 
 ShipAI::~ShipAI()
