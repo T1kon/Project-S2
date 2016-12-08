@@ -22,7 +22,7 @@ Game::Game(){
 
     scene->addItem(rect);
 
-    ShipPlayer * p = new ShipPlayer();
+    ShipPlayer * p = new ShipPlayer(0,0,0);
     scene->addItem(p);
     p->setFlag(QGraphicsItem::ItemIsFocusable);
     p->setFocus();

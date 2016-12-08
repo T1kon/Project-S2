@@ -2,7 +2,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 
-ShipPlayer::ShipPlayer()
+ShipPlayer::ShipPlayer(double x, double y, double angle): Ship(x,y,angle)
 {
     CanRotateL = false;
     CanRotateR = false;

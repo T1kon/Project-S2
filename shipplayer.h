@@ -9,7 +9,7 @@ class ShipPlayer: public Ship
 private:
 
 public:
-    ShipPlayer();
+    ShipPlayer(double x, double y, double angle);
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);
 };
