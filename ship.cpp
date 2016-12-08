@@ -30,10 +30,15 @@ void Ship::setShip()
     CanRotateR = false;
     canMoveB = false;
     canMoveF = false;
+    CanShoot = false;
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(1000/60);
+
+    shootTimer = new QTimer();
+    connect(shootTimer, SIGNAL(timeout()), this, SLOT(fire()));
+    shootTimer->start(1000/2);
 }
 
 void Ship::addAcceleration(double dir)
@@ -98,4 +103,13 @@ void Ship::move()
     }
     qDebug() << "| Coords:" << x() << " " << y() << fmod(rotation(), 360);
     this->setPos(this->x() + speedX, this->y() + speedY);
+}
+
+void Ship::fire()
+{
+    if (CanShoot){
+        double radian = (90 - this->rotation())/180*M_PI;
+        Bullet * bullet = new Bullet(x() + 12.5*cos(radian), y() - 35*sin(radian), rotation());
+        scene()->addItem(bullet);
+    }
 }

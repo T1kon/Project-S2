@@ -4,10 +4,7 @@
 
 ShipPlayer::ShipPlayer(double x, double y, double angle): Ship(x,y,angle)
 {
-    CanRotateL = false;
-    CanRotateR = false;
-    canMoveB = false;
-    canMoveF = false;
+
 }
 
 void ShipPlayer::keyPressEvent(QKeyEvent *event)
@@ -26,6 +23,9 @@ void ShipPlayer::keyPressEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Right){
         CanRotateR = true;
     }
+    else if (event->key() == Qt::Key_Space){
+        CanShoot = true;
+    }
 }
 
 void ShipPlayer::keyReleaseEvent(QKeyEvent *event)
@@ -41,5 +41,8 @@ void ShipPlayer::keyReleaseEvent(QKeyEvent *event)
     }
     else if (event->key() == Qt::Key_Right){
         CanRotateR = false;
+    }
+    else if (event->key() == Qt::Key_Space){
+        CanShoot = false;
     }
 }

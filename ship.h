@@ -2,8 +2,10 @@
 #define SHIP_H
 
 #include <QGraphicsPixmapItem>
+#include <QGraphicsScene>
 #include <QObject>
 #include <QTimer>
+#include "bullet.h"
 
 class Ship: public QObject, public QGraphicsPixmapItem
 {
@@ -16,8 +18,9 @@ private:
     const double ROTATION_SPEED = 1.5;
     const int MAX_HEALTH = 10;
     QTimer * timer;
+    QTimer * shootTimer;
 protected:
-    bool canMoveF, canMoveB, CanRotateL, CanRotateR;
+    bool canMoveF, canMoveB, CanRotateL, CanRotateR, CanShoot;
 public:
     Ship();
     Ship(double X, double Y, double angle);
@@ -29,6 +32,7 @@ public slots:
     void rotateLeft();
     void rotateRight();
     void move();
+    void fire();
 };
 
 #endif // SHIP_H
