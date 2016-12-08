@@ -63,7 +63,15 @@ void Ship::slow()
 {
     double radian = (90 - this->rotation())/180*M_PI;
     speedX += acceleration*cos(radian);
+    if (abs(speedX) > MAX_SPEED/2){
+        (speedX < 0)? speedX=-MAX_SPEED/2 : speedX=MAX_SPEED/2;
+    }
+
     speedY -= acceleration*sin(radian);
+    if (abs(speedY) > MAX_SPEED/2){
+        (speedY < 0)? speedY=-MAX_SPEED/2 : speedY=MAX_SPEED/2;
+    }
+
     if (abs(speedX) < 0.1 && abs(speedY) < 0.1){
         speedX = 0;
         speedY = 0;
@@ -101,7 +109,7 @@ void Ship::move()
     if (CanRotateR){
         rotateRight();
     }
-    qDebug() << "| Coords:" << x() << " " << y() << fmod(rotation(), 360);
+    //qDebug() << "| Coords:" << x() << " " << y() << fmod(rotation(), 360);
     this->setPos(this->x() + speedX, this->y() + speedY);
 }
 

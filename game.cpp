@@ -5,11 +5,11 @@
 #include <QDebug>
 
 Game::Game(){
-
+    rotation = 0;
     setFocusPolicy(Qt::StrongFocus);
 
     scene = new QGraphicsScene(this);
-    scene->setSceneRect(0, 0, 10000, 10000);
+    scene->setSceneRect(0, 0, 1000, 1000);
 
     setScene(scene);
 
@@ -18,13 +18,14 @@ Game::Game(){
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    ShipPlayer * p = new ShipPlayer(400, 400, 0);
+    p = new ShipPlayer(400, 400, 0);
 
     centerOn(p);
-    QPointF * point = new QPointF(p->x(), p->y());
-    timer = new QTimer();
-    //connect(timer, SIGNAL(timeout()), this, SLOT(bld(point)));
-    timer->start(1000/60);
+
+    QTimer * timer1 = new QTimer();
+    connect(timer1, SIGNAL(timeout()), this, SLOT(moveCam()));
+
+    timer1->start(1000/12000);
 
     scene->addItem(p);
     p->setFlag(QGraphicsItem::ItemIsFocusable);
@@ -38,8 +39,7 @@ Game::Game(){
 
 }
 
-void Game::bld(QPointF f)
+void Game::moveCam()
 {
-    centerOn(f);
-    qDebug() << f;
+    centerOn(p->x(), p->y());
 }

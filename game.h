@@ -2,19 +2,20 @@
 #define GAME_H
 
 #include <QGraphicsView>
-#include <QObject>
 #include <shipplayer.h>
 
 class Game: public QGraphicsView{
-        Q_OBJECT
+    Q_OBJECT
+private:
+    ShipPlayer * p;
+    double rotation;
 public:
     Game();
 
     QGraphicsScene * scene;
-    QTimer * timer;
 
 public slots:
-    void bld(QPointF f);
+    void moveCam();
 };
 
 #endif // GAME_H
