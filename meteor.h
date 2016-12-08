@@ -6,11 +6,11 @@
 
 class Meteor : public QGraphicsPixmapItem{
 public:
-    Meteor(int x, int y, int healthPoint);
+    Meteor(double x, double y, int healthPoint);
 
 private:
-    int x;
-    int y;
+    double x;
+    double y;
     int healthPoint;
 };
 

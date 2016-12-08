@@ -2,6 +2,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
 #include "shipplayer.h"
+#include "meteor.h"
 #include <QDebug>
 
 Game::Game(){
@@ -36,6 +37,8 @@ Game::Game(){
     rect->setPos(500, 500);
     scene->addItem(rect);
 
+    Meteor * m1 = new Meteor(100, 100, 4);
+    scene->addItem(m1);
 
 }
 
