@@ -26,10 +26,10 @@ void Ship::setShip()
     speedY = 0;
     acceleration = 0.0;
     health = MAX_HEALTH;
-    CanRotateL = true;
-    CanRotateR = true;
-    canMoveB = true;
-    canMoveF = true;
+    CanRotateL = false;
+    CanRotateR = false;
+    canMoveB = false;
+    canMoveF = false;
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
