@@ -12,8 +12,8 @@ Game::Game(){
     this->setCursor(Qt::BlankCursor);
     QDesktopWidget widget;
     QRect mainScreenSize = widget.availableGeometry(widget.primaryScreen());
-    setFixedSize(mainScreenSize.width(), mainScreenSize.height());
-    showFullScreen();
+    setFixedSize(mainScreenSize.width()-10, mainScreenSize.height()-35);
+    //showFullScreen();
 
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0, 0, 10000, 10000);
