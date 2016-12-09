@@ -20,6 +20,5 @@ void MainWindow::on_playButton_clicked()
 {
     Game * game = new Game();
     game->show();
-    //this->game.show();
     this->hide();
 }

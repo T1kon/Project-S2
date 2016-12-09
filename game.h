@@ -15,6 +15,7 @@ public:
 
 public slots:
     void moveCam();
+
 };
 
 #endif // GAME_H

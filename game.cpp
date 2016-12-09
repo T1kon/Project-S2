@@ -4,25 +4,29 @@
 #include "shipplayer.h"
 #include "meteor.h"
 #include <QDebug>
+#include <QDesktopWidget>
+#include <QKeyEvent>
 
 Game::Game(){
-    rotation = 0;
     setFocusPolicy(Qt::StrongFocus);
-    setBackgroundBrush(QBrush(QImage(":/images/space.png")));
+    this->setCursor(Qt::BlankCursor);
+    QDesktopWidget widget;
+    QRect mainScreenSize = widget.availableGeometry(widget.primaryScreen());
+    setFixedSize(mainScreenSize.width(), mainScreenSize.height());
+    showFullScreen();
 
     scene = new QGraphicsScene(this);
     scene->setSceneRect(0, 0, 10000, 10000);
+    scene->setBackgroundBrush(QBrush(QImage(":/images/space.png")));
 
     setScene(scene);
-
-    setFixedSize(800, 600);
 
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    p = new ShipPlayer(5000, 5000, 0);
+    //==========================================================
 
-    centerOn(p);
+    p = new ShipPlayer(5000, 5000, 0);
 
     QTimer * timer1 = new QTimer();
     connect(timer1, SIGNAL(timeout()), this, SLOT(moveCam()));
@@ -33,14 +37,8 @@ Game::Game(){
     p->setFlag(QGraphicsItem::ItemIsFocusable);
     p->setFocus();
 
-    QGraphicsRectItem * rect = new QGraphicsRectItem();
-    rect->setRect(0, 0, 100, 100);
-    rect->setPos(5000, 5000);
-    scene->addItem(rect);
-
     Meteor * m1 = new Meteor(5100, 5100, 4);
     scene->addItem(m1);
-
 }
 
 void Game::moveCam()
