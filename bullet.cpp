@@ -1,4 +1,6 @@
 #include "bullet.h"
+#include <QGraphicsScene>
+#include "meteor.h"
 
 Bullet::Bullet(double x, double y, double angle)
 {
@@ -18,6 +20,18 @@ Bullet::Bullet(double x, double y, double angle)
 
 void Bullet::moveBullet()
 {
+    foreach (QGraphicsItem * item, collidingItems()) {
+        if(item->type() == Meteor::Type){
+            scene()->removeItem(item);
+            scene()->removeItem(this);
+
+            delete item;
+            delete this;
+            return;
+        }
+
+    }
+
     double angle = (90 - this->rotation())/180*M_PI;
     setPos(x() + SPEED*cos(angle), y() - SPEED*sin(angle));
 }
