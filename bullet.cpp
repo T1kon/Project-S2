@@ -15,17 +15,16 @@ Bullet::Bullet(double x, double y, double angle)
 
     lifeTime = new QTimer();
     connect(lifeTime, SIGNAL(timeout()), this, SLOT(deleteBullet()));
-    lifeTime->start(1000);
+    lifeTime->start(3000);
 }
 
 void Bullet::moveBullet()
 {
     foreach (QGraphicsItem * item, collidingItems()) {
         if(item->type() == Meteor::Type){
-            scene()->removeItem(item);
-            scene()->removeItem(this);
+            scene()->removeItem(item);           
             delete item;
-            delete this;
+            deleteBullet();
             return;
         }
 
@@ -37,5 +36,6 @@ void Bullet::moveBullet()
 
 void Bullet::deleteBullet()
 {
+    scene()->removeItem(this);
     delete this;
 }

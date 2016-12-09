@@ -13,11 +13,6 @@ private:
     double x;
     double y;
     int healthPoint;
-
-public:
-
-
-    // QGraphicsItem interface
 public:
     virtual int type() const;
 };

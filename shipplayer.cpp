@@ -1,5 +1,4 @@
 #include "shipplayer.h"
-#include <QDebug>
 #include <QKeyEvent>
 
 ShipPlayer::ShipPlayer(double x, double y, double angle): Ship(x,y,angle)
@@ -9,8 +8,6 @@ ShipPlayer::ShipPlayer(double x, double y, double angle): Ship(x,y,angle)
 
 void ShipPlayer::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "key is pressed";
-
     if (event->key() == Qt::Key_Up){
         canMoveF = true;
     }
@@ -45,4 +42,9 @@ void ShipPlayer::keyReleaseEvent(QKeyEvent *event)
     else if (event->key() == Qt::Key_Space){
         CanShoot = false;
     }
+}
+
+int ShipPlayer::type() const
+{
+    return Type;
 }
