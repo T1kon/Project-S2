@@ -15,6 +15,10 @@ private:
     int healthPoint;
 
 public:
+
+
+    // QGraphicsItem interface
+public:
     virtual int type() const;
 };
 

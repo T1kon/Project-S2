@@ -8,3 +8,9 @@ Meteor::Meteor(double x, double y, int healthPoint)
     this->healthPoint = healthPoint;
 }
 
+
+
+int Meteor::type() const
+{
+    return Type;
+}

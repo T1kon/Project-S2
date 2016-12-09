@@ -24,7 +24,6 @@ void Bullet::moveBullet()
         if(item->type() == Meteor::Type){
             scene()->removeItem(item);
             scene()->removeItem(this);
-
             delete item;
             delete this;
             return;

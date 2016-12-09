@@ -8,6 +8,7 @@ class ShipAI: public Ship
 {
 private:
 public:
+    enum { Type = UserType + 2 };
     ShipAI();
     ~ShipAI();
     Counter<ShipAI> counter;
