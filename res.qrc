@@ -3,5 +3,6 @@
         <file>ship.png</file>
         <file>bullet.png</file>
         <file>meteor.png</file>
+        <file>space.png</file>
     </qresource>
 </RCC>

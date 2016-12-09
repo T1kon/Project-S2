@@ -8,7 +8,6 @@ class Game: public QGraphicsView{
     Q_OBJECT
 private:
     ShipPlayer * p;
-    double rotation;
 public:
     Game();
 

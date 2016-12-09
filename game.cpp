@@ -8,9 +8,10 @@
 Game::Game(){
     rotation = 0;
     setFocusPolicy(Qt::StrongFocus);
+    setBackgroundBrush(QBrush(QImage(":/images/space.png")));
 
     scene = new QGraphicsScene(this);
-    scene->setSceneRect(0, 0, 1000, 1000);
+    scene->setSceneRect(0, 0, 10000, 10000);
 
     setScene(scene);
 
@@ -19,7 +20,7 @@ Game::Game(){
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    p = new ShipPlayer(400, 400, 0);
+    p = new ShipPlayer(5000, 5000, 0);
 
     centerOn(p);
 
@@ -34,10 +35,10 @@ Game::Game(){
 
     QGraphicsRectItem * rect = new QGraphicsRectItem();
     rect->setRect(0, 0, 100, 100);
-    rect->setPos(500, 500);
+    rect->setPos(5000, 5000);
     scene->addItem(rect);
 
-    Meteor * m1 = new Meteor(100, 100, 4);
+    Meteor * m1 = new Meteor(5100, 5100, 4);
     scene->addItem(m1);
 
 }
