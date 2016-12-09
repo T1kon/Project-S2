@@ -13,6 +13,8 @@ public:
 
     QGraphicsScene * scene;
 
+   // void keyPressEvent(QKeyEvent *event);
+
 public slots:
     void moveCam();
 

@@ -9,7 +9,7 @@
 
 Game::Game(){
     setFocusPolicy(Qt::StrongFocus);
-    this->setCursor(Qt::BlankCursor);
+    setCursor(Qt::BlankCursor);
     QDesktopWidget widget;
     QRect mainScreenSize = widget.availableGeometry(widget.primaryScreen());
     setFixedSize(mainScreenSize.width()-10, mainScreenSize.height()-35);
@@ -30,18 +30,23 @@ Game::Game(){
 
     QTimer * timer1 = new QTimer();
     connect(timer1, SIGNAL(timeout()), this, SLOT(moveCam()));
-
     timer1->start(1000/12000);
 
     scene->addItem(p);
     p->setFlag(QGraphicsItem::ItemIsFocusable);
-    p->setFocus();
 
     Meteor * m1 = new Meteor(5100, 5100, 4);
     scene->addItem(m1);
 }
 
+/*&void Game::keyPressEvent(QKeyEvent *event){
+    if (event->key() == Qt::Key_Escape){
+        delete this;
+    }
+}*/
+
 void Game::moveCam()
 {
     centerOn(p->x(), p->y());
+    p->setFocus();
 }
