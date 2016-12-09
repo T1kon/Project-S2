@@ -8,6 +8,9 @@ ShipAI::ShipAI(double x, double y, double angle): Ship(x,y,angle)
     else{
         delete this;
     }
+    foreach (QGraphicsItem * item, scene()->items()) {
+
+    }
 }
 
 ShipAI::~ShipAI()
