@@ -1,8 +1,8 @@
 #include "shipai.h"
 
-ShipAI::ShipAI()
+ShipAI::ShipAI(double x, double y, double angle): Ship(x,y,angle)
 {
-    if (counter.getCount() < 2){
+    if (counter.getCount() < MAX_COUNT){
 
     }
     else{

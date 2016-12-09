@@ -14,7 +14,7 @@ private:
     double speedX, speedY;
     unsigned int health;
     double acceleration;
-    const double MAX_SPEED = 2.0;
+    const double MAX_SPEED = 4.0;
     const double ROTATION_SPEED = 1.5;
     const int MAX_HEALTH = 10;
     QTimer * timer;

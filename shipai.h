@@ -7,9 +7,11 @@
 class ShipAI: public Ship
 {
 private:
+    Ship * target;
+    const int MAX_COUNT = 5;
 public:
     enum { Type = UserType + 2 };
-    ShipAI();
+    ShipAI(double x, double y, double angle);
     ~ShipAI();
     Counter<ShipAI> counter;
 };

@@ -63,12 +63,12 @@ void Ship::slow()
 {
     double radian = (90 - this->rotation())/180*M_PI;
     speedX += acceleration*cos(radian);
-    if (abs(speedX) > MAX_SPEED/2){
+    if (abs(speedX) > MAX_SPEED/4){
         (speedX < 0)? speedX=-MAX_SPEED/2 : speedX=MAX_SPEED/2;
     }
 
     speedY -= acceleration*sin(radian);
-    if (abs(speedY) > MAX_SPEED/2){
+    if (abs(speedY) > MAX_SPEED/4){
         (speedY < 0)? speedY=-MAX_SPEED/2 : speedY=MAX_SPEED/2;
     }
 
@@ -115,6 +115,7 @@ void Ship::move()
 
 void Ship::fire()
 {
+    shootTimer->start(0);
     if (CanShoot){
         double radian = (90 - this->rotation())/180*M_PI;
         Bullet * bullet = new Bullet(x() + 12.5*cos(radian), y() - 35*sin(radian), rotation());
