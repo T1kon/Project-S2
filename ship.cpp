@@ -125,12 +125,10 @@ void Ship::fire()
     }
 }
 
-void Ship::reduseHP()
+void Ship::reduceHP()
 {
-    if (this->health > 1){
-        this->health--;
-    }
-    else{
+    this->health --;
+    if (this->health <= 0){
         scene()->removeItem(this);
         delete this;
     }

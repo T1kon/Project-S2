@@ -2,6 +2,7 @@
 #include <QGraphicsScene>
 #include "meteor.h"
 #include "shipai.h"
+#include "shipplayer.h"
 
 Bullet::Bullet(double x, double y, double angle)
 {
@@ -22,9 +23,13 @@ Bullet::Bullet(double x, double y, double angle)
 void Bullet::moveBullet()
 {
     foreach (QGraphicsItem * item, collidingItems()) {
-        if(item->type() == Meteor::Type || item->type() == ShipAI::Type){
-            scene()->removeItem(item);           
-            delete item;
+        if(item->type() == Meteor::Type){
+            dynamic_cast<Meteor*>(item)->reduceHP();
+            deleteBullet();
+            return;
+        }
+        else if(item->type() == ShipAI::Type || item->type() == ShipPlayer::Type){
+            dynamic_cast<Ship*>(item)->reduceHP();
             deleteBullet();
             return;
         }

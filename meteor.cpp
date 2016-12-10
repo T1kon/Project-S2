@@ -18,10 +18,8 @@ int Meteor::type() const
 
 void Meteor::reduceHP()
 {
-    if (this->health > 1){
-        this->health--;
-    }
-    else{
+    this->health --;
+    if (this->health <= 0){
         scene()->removeItem(this);
         delete this;
     }

@@ -33,7 +33,7 @@ public slots:
     void rotateRight();
     void move();
     void fire();
-    void reduseHP();
+    void reduceHP();
     unsigned int getHP() const;
 };
 
