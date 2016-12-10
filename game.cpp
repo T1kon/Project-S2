@@ -4,9 +4,13 @@
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QKeyEvent>
+#include <math.h>
 
 
 Game::Game(){
+
+    srand(static_cast<unsigned int>(time(NULL)));
+
     setFocusPolicy(Qt::StrongFocus);
     setCursor(Qt::BlankCursor);
     QDesktopWidget widget;
@@ -64,8 +68,10 @@ void Game::moveCam()
 
 void Game::spawn()
 {
-    srand(static_cast<unsigned int>(time(NULL)));
-    Meteor * meteor = new Meteor(p->x()+float((rand()%500)-250),p->y()+float((rand()%500)-250),1);
+    double angle = rand() % 360;
+    double meteorX = p->x() + cos(angle/180*M_PI) * (rand() % 800 + 300);
+    double meteorY = p->y() + sin(angle/180*M_PI) * (rand() % 800 + 300);
+    Meteor * meteor = new Meteor(meteorX, meteorY, 1);
     scene->addItem(meteor);
 
 
