@@ -1,6 +1,7 @@
 #include "ship.h"
 #include <QDebug>
 #include <cmath>
+#include <QGraphicsScene>
 
 Ship::Ship()
 {
@@ -122,4 +123,20 @@ void Ship::fire()
         scene()->addItem(bullet);
         shootTimer->start(1000/2);
     }
+}
+
+void Ship::reduseHP()
+{
+    if (this->health > 1){
+        this->health--;
+    }
+    else{
+        scene()->removeItem(this);
+        delete this;
+    }
+}
+
+unsigned int Ship::getHP() const
+{
+    return this->health;
 }

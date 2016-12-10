@@ -1,11 +1,10 @@
 #include "Game.h"
 #include <QGraphicsScene>
 #include <QGraphicsRectItem>
-#include "shipplayer.h"
-#include "meteor.h"
 #include <QDebug>
 #include <QDesktopWidget>
 #include <QKeyEvent>
+
 
 Game::Game(){
     setFocusPolicy(Qt::StrongFocus);
@@ -28,6 +27,14 @@ Game::Game(){
 
     p = new ShipPlayer(5000, 5000, 0);
 
+    ShipAI * ai1 = new ShipAI(5200,5200,0);
+    ShipAI * ai2 = new ShipAI(5250,5250,0);
+    ShipPlayer * p2 = new ShipPlayer(5300,5300,0);
+    scene->addItem(ai1);
+    scene->addItem(ai2);
+    scene->addItem(p2);
+
+
     QTimer * timer1 = new QTimer();
     connect(timer1, SIGNAL(timeout()), this, SLOT(moveCam()));
     timer1->start(1000/12000);
@@ -35,8 +42,11 @@ Game::Game(){
     scene->addItem(p);
     p->setFlag(QGraphicsItem::ItemIsFocusable);
 
-    Meteor * m1 = new Meteor(5100, 5100, 4);
-    scene->addItem(m1);
+    QTimer * spawnTimer = new QTimer();
+
+    connect(spawnTimer, SIGNAL(timeout()),
+            this,SLOT(spawn()));
+    spawnTimer->start(1000);
 }
 
 /*&void Game::keyPressEvent(QKeyEvent *event){
@@ -45,8 +55,19 @@ Game::Game(){
     }
 }*/
 
+
 void Game::moveCam()
 {
     centerOn(p->x(), p->y());
     p->setFocus();
 }
+
+void Game::spawn()
+{
+    srand(static_cast<unsigned int>(time(NULL)));
+    Meteor * meteor = new Meteor(p->x()+float((rand()%500)-250),p->y()+float((rand()%500)-250),1);
+    scene->addItem(meteor);
+
+
+}
+

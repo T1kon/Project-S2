@@ -2,7 +2,13 @@
 #define GAME_H
 
 #include <QGraphicsView>
-#include <shipplayer.h>
+#include <QTimer>
+
+#include "shipplayer.h"
+#include "meteor.h"
+#include "shipai.h"
+#include <ctime>
+#include <cstdlib>
 
 class Game: public QGraphicsView{
     Q_OBJECT
@@ -17,6 +23,7 @@ public:
 
 public slots:
     void moveCam();
+    void spawn();
 
 };
 
