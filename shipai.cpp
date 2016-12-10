@@ -24,7 +24,7 @@ ShipAI::~ShipAI()
 
 double ShipAI::countAngle(double x, double y)
 {
-    return atan2(y, x) * 180 / M_PI;
+    return 180 - atan2(y, x) * 180 / M_PI;
 }
 
 double ShipAI::currentAngle(double angle)
@@ -44,6 +44,16 @@ int ShipAI::type() const
     return Type;
 }
 
+bool ShipAI::checkShootingDistance(double x, double y)
+{
+    if (sqrt((x*x + y*y)) < 1000){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 void ShipAI::refreshLogics()
 {
     foreach (QGraphicsItem * item, scene()->items()) {
@@ -51,23 +61,27 @@ void ShipAI::refreshLogics()
             targetX = item->x();
             targetY = item->y();
             targetAngle = countAngle(targetY - y(), targetX - x());
-            qDebug() << targetX << targetY << targetAngle;
+            qDebug() << targetX << targetY << targetAngle << currentAngle(rotation());
         }
     }
-    if(targetAngle != currentAngle(rotation())){
-        if (targetAngle > currentAngle(rotation())){
-            CanRotateL = true;
-            CanRotateR = false;
-        }
-        else if (targetAngle < currentAngle(rotation())){
-            CanRotateL = false;
-            CanRotateR = true;
-        }
-        else{
-            CanRotateL = false;
-            CanRotateR = false;
+    CanShoot = false;
+    if (targetAngle - currentAngle(rotation()) > 0 && targetAngle - currentAngle(rotation()) <= 180){
+        CanRotateL = false;
+        CanRotateR = true;
+        if (targetAngle - currentAngle(rotation()) > 0 && targetAngle - currentAngle(rotation()) <= 10){
+            CanShoot = checkShootingDistance(targetX - x(), targetY - y());
         }
     }
+    else if (targetAngle == currentAngle(rotation())){
+        CanRotateL = false;
+        CanRotateR = false;
+        CanShoot = checkShootingDistance(targetX - x(), targetY - y());
+    }
+    else{
+        CanRotateL = true;
+        CanRotateR = false;
+    }
+    canMoveF = true;
 }
 
 template<> int Counter<ShipAI>::count=0;

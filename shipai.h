@@ -23,6 +23,7 @@ public:
     double countAngle(double x, double y);
     double currentAngle(double angle);
     virtual int type() const;
+    bool checkShootingDistance(double x, double y);
 public slots:
     void refreshLogics();
 };

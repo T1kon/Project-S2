@@ -2,7 +2,6 @@
 #define SHIPPLAYER_H
 
 #include "ship.h"
-#include <QMap>
 
 class ShipPlayer: public Ship
 {
