@@ -25,6 +25,9 @@ public:
     Ship();
     Ship(double X, double Y, double angle);
     void setShip();
+    void deleteShip();
+    void reduceHP();
+    unsigned int getHP() const;
 public slots:
     void addAcceleration(double dir);
     void accelerate();
@@ -33,8 +36,6 @@ public slots:
     void rotateRight();
     void move();
     void fire();
-    void reduceHP();
-    unsigned int getHP() const;
 };
 
 #endif // SHIP_H

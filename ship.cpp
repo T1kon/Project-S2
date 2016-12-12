@@ -22,7 +22,7 @@ Ship::Ship(double X, double Y, double angle)
 void Ship::setShip()
 {
     setPixmap(QPixmap(":/images/ship.png"));
-    setOffset(-10,-25);
+    setOffset(-12,-25);
     speedX = 0;
     speedY = 0;
     acceleration = 0.0;
@@ -40,6 +40,12 @@ void Ship::setShip()
     shootTimer = new QTimer();
     connect(shootTimer, SIGNAL(timeout()), this, SLOT(fire()));
     shootTimer->start(0);
+}
+
+void Ship::deleteShip()
+{
+    scene()->removeItem(this);
+    delete this;
 }
 
 void Ship::addAcceleration(double dir)
@@ -119,7 +125,7 @@ void Ship::fire()
     shootTimer->start(0);
     if (CanShoot){
         double radian = (90 - this->rotation())/180*M_PI;
-        Bullet * bullet = new Bullet(x() + 12.5*cos(radian), y() - 35*sin(radian), rotation());
+        Bullet * bullet = new Bullet(x() + 50*cos(radian), y() - 50*sin(radian), rotation());
         scene()->addItem(bullet);
         shootTimer->start(1000/2);
     }
@@ -129,8 +135,7 @@ void Ship::reduceHP()
 {
     this->health --;
     if (this->health <= 0){
-        scene()->removeItem(this);
-        delete this;
+        deleteShip();
     }
 }
 

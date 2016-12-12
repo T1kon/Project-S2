@@ -37,6 +37,7 @@ Game::Game(){
     scene->addItem(ai1);
     scene->addItem(ai2);
     scene->addItem(p2);
+    //qDebug() << ai1->getCount();
 
 
     QTimer * timer1 = new QTimer();
@@ -68,9 +69,12 @@ void Game::moveCam()
 
 void Game::spawn()
 {
+
+    qDebug() << "ShipCount: "<< ShipAI::getCount();
+    qDebug() << "MeteorCount: "<< Meteor::getCount();
     double angle = rand() % 360;
-    double meteorX = p->x() + cos(angle/180*M_PI) * (rand() % 800 + 300);
-    double meteorY = p->y() + sin(angle/180*M_PI) * (rand() % 800 + 300);
+    double meteorX = p->x() + cos(angle/180*M_PI) * (rand() % 300 + 700);
+    double meteorY = p->y() + sin(angle/180*M_PI) * (rand() % 300 + 700);
     Meteor * meteor = new Meteor(meteorX, meteorY, 1);
     scene->addItem(meteor);
 

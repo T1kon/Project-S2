@@ -7,10 +7,13 @@ class Counter
 {
 public:
     Counter(){count++;}
+    Counter(const Counter&){ count++;}
     ~Counter(){count--;}
-    int getCount(){return count;}
-protected:
+    static int getCount(){return count;}
+private:
     static int count;
 };
 
+template<class T>
+int Counter<T>::count = 0;
 #endif // COUNTER_H

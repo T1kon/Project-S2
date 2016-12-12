@@ -4,12 +4,6 @@
 
 ShipAI::ShipAI(double x, double y, double angle): Ship(x,y,angle)
 {
-    if (counter.getCount() < MAX_COUNT){
-
-    }
-    else{
-        delete this;
-    }
     targetX = 0;
     targetY = 0;
     targetAngle = 0;
@@ -61,7 +55,7 @@ void ShipAI::refreshLogics()
             targetX = item->x();
             targetY = item->y();
             targetAngle = countAngle(targetY - y(), targetX - x());
-            qDebug() << targetX << targetY << targetAngle << currentAngle(rotation());
+            //qDebug() << targetX << targetY << targetAngle << currentAngle(rotation());
         }
     }
     CanShoot = false;
@@ -83,5 +77,3 @@ void ShipAI::refreshLogics()
     }
     canMoveF = true;
 }
-
-template<> int Counter<ShipAI>::count=0;

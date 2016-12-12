@@ -15,11 +15,12 @@ private:
     double targetAngle;
     const int MAX_COUNT = 5;
     QTimer * logicTimer;
+    Counter<ShipAI> counter;
 public:
     enum { Type = UserType + 2 };
     ShipAI(double x, double y, double angle);
     ~ShipAI();
-    Counter<ShipAI> counter;
+    static int getCount(){return Counter<ShipAI>::getCount();}
     double countAngle(double x, double y);
     double currentAngle(double angle);
     virtual int type() const;
