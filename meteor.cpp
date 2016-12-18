@@ -1,11 +1,11 @@
 #include "meteor.h"
-#include <QDebug>
-#include <QGraphicsScene>
+
 Meteor::Meteor(double x, double y, int health)
 {
     setPixmap(QPixmap(":/images/meteor.png"));
     setOffset(-20.5, -20.5);
-    setPos(x,y);
+    setX(x);
+    setY(y);
     this->health = health;
 }
 
@@ -18,8 +18,10 @@ int Meteor::type() const
 
 void Meteor::reduceHP()
 {
-    this->health --;
+    this->health--;
     if (this->health <= 0){
+        Explosion * exp = new Explosion(this->x(), this->y());
+        scene()->addItem(exp);
         scene()->removeItem(this);
         delete this;
     }

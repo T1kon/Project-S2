@@ -5,6 +5,8 @@
 #include <QGraphicsScene>
 #include <QObject>
 #include <QTimer>
+#include "meteor.h"
+#include "explosion.h"
 #include "bullet.h"
 
 class Ship: public QObject, public QGraphicsPixmapItem
@@ -12,7 +14,6 @@ class Ship: public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 private:
     double speedX, speedY;
-    unsigned int health;
     double acceleration;
     const double MAX_SPEED = 4.0;
     const double ROTATION_SPEED = 1.5;
@@ -20,6 +21,7 @@ private:
     QTimer * timer;
     QTimer * shootTimer;
 protected:
+    unsigned int health;
     bool canMoveF, canMoveB, CanRotateL, CanRotateR, CanShoot;
 public:
     Ship();
@@ -27,6 +29,7 @@ public:
     void setShip();
     void deleteShip();
     void reduceHP();
+    void checkCollision();
     unsigned int getHP() const;
 public slots:
     void addAcceleration(double dir);

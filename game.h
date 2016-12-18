@@ -14,6 +14,7 @@ class Game: public QGraphicsView{
     Q_OBJECT
 private:
     ShipPlayer * p;
+    unsigned int score = 0;
 public:
     Game();
 

@@ -3,9 +3,13 @@
 
 
 #include  <QGraphicsPixmapItem>
+#include <QGraphicsScene>
+#include <QObject>
 #include "counter.h"
+#include "explosion.h"
 
-class Meteor : public QGraphicsPixmapItem{
+class Meteor :public QObject, public QGraphicsPixmapItem{
+    Q_OBJECT
 public:
     enum { Type = UserType + 1 };
     Meteor(double x, double y, int health);
@@ -15,8 +19,6 @@ public:
     static int getCount(){return Counter<Meteor>::getCount();}
 
 private:
-    double x;
-    double y;
     unsigned int health;
     Counter<Meteor> counter;
 };

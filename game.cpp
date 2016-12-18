@@ -31,14 +31,6 @@ Game::Game(){
 
     p = new ShipPlayer(5000, 5000, 0);
 
-    ShipAI * ai1 = new ShipAI(5200,5200,0);
-    ShipAI * ai2 = new ShipAI(5250,5250,0);
-    ShipPlayer * p2 = new ShipPlayer(5300,5300,0);
-    scene->addItem(ai1);
-    scene->addItem(ai2);
-    scene->addItem(p2);
-    //qDebug() << ai1->getCount();
-
 
     QTimer * timer1 = new QTimer();
     connect(timer1, SIGNAL(timeout()), this, SLOT(moveCam()));
@@ -69,14 +61,24 @@ void Game::moveCam()
 
 void Game::spawn()
 {
-
-    qDebug() << "ShipCount: "<< ShipAI::getCount();
-    qDebug() << "MeteorCount: "<< Meteor::getCount();
-    double angle = rand() % 360;
-    double meteorX = p->x() + cos(angle/180*M_PI) * (rand() % 300 + 700);
-    double meteorY = p->y() + sin(angle/180*M_PI) * (rand() % 300 + 700);
-    Meteor * meteor = new Meteor(meteorX, meteorY, 1);
-    scene->addItem(meteor);
+    score++;
+    qDebug() << "Score:" << score;
+    //qDebug() << "ShipCount: "<< ShipAI::getCount();
+    //qDebug() << "MeteorCount: "<< Meteor::getCount();
+    if (Meteor::getCount() < 2000){
+        double angle = (rand() % 360) ;
+        double meteorX = p->x() + cos(angle/180*M_PI) * (rand() % 300 + 1050);
+        double meteorY = p->y() + sin(angle/180*M_PI) * (rand() % 300 + 1050);
+        Meteor * meteor = new Meteor(meteorX, meteorY, 1);
+        scene->addItem(meteor);
+    }
+    if (ShipAI::getCount() < 20){
+        double angle = (rand() % 720) /2;
+        double shipX = p->x() + cos(angle/180*M_PI) * (rand() % 200 + 1050);
+        double shipY = p->y() + sin(angle/180*M_PI) * (rand() % 200 + 1050);
+        ShipAI * ai = new ShipAI(shipX, shipY, angle);
+        scene->addItem(ai);
+    }
 
 
 }

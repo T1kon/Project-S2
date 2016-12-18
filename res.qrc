@@ -4,5 +4,6 @@
         <file>bullet.png</file>
         <file>meteor.png</file>
         <file>space.png</file>
+        <file>explosion.png</file>
     </qresource>
 </RCC>

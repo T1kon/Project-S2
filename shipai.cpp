@@ -4,6 +4,7 @@
 
 ShipAI::ShipAI(double x, double y, double angle): Ship(x,y,angle)
 {
+    health = 1;
     targetX = 0;
     targetY = 0;
     targetAngle = 0;

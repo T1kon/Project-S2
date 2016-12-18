@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     meteor.cpp \
     shipai.cpp \
     shipplayer.cpp \
-    game.cpp
+    game.cpp \
+    explosion.cpp
 
 HEADERS  += mainwindow.h \
     ship.h \
@@ -28,7 +29,8 @@ HEADERS  += mainwindow.h \
     shipai.h \
     shipplayer.h \
     game.h \
-    counter.h
+    counter.h \
+    explosion.h
 
 FORMS    += mainwindow.ui
 

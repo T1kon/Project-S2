@@ -1,7 +1,6 @@
 #include "ship.h"
 #include <QDebug>
 #include <cmath>
-#include <QGraphicsScene>
 
 Ship::Ship()
 {
@@ -44,6 +43,8 @@ void Ship::setShip()
 
 void Ship::deleteShip()
 {
+    Explosion * exp = new Explosion(this->x(), this->y());
+    scene()->addItem(exp);
     scene()->removeItem(this);
     delete this;
 }
@@ -99,6 +100,7 @@ void Ship::rotateRight()
 
 void Ship::move()
 {
+
     if (canMoveF){
         addAcceleration(1);
         accelerate();
@@ -116,6 +118,7 @@ void Ship::move()
     if (CanRotateR){
         rotateRight();
     }
+    checkCollision();
     //qDebug() << "| Coords:" << x() << " " << y() << fmod(rotation(), 360);
     this->setPos(this->x() + speedX, this->y() + speedY);
 }
@@ -136,6 +139,17 @@ void Ship::reduceHP()
     this->health --;
     if (this->health <= 0){
         deleteShip();
+    }
+}
+
+void Ship::checkCollision()
+{
+    foreach (QGraphicsItem * item, collidingItems()) {
+        if(item->type() == Meteor::Type){
+            dynamic_cast<Meteor*>(item)->reduceHP();
+            this->reduceHP();
+            return;
+        }
     }
 }
 
