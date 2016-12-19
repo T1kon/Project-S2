@@ -19,6 +19,9 @@ MainWindow::~MainWindow()
 void MainWindow::on_playButton_clicked()
 {
     Game * game = new Game();
-    game->show();
     this->hide();
+    game->show();
+    if (!game){
+        this->show();
+    }
 }

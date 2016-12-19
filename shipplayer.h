@@ -13,9 +13,12 @@ public:
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);
 
+    // Ship interface
+    void deleteShip();
+
     // QGraphicsItem interface
-public:
     int type() const;
+
 };
 
 #endif // SHIPPLAYER_H

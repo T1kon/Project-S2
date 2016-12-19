@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <QGraphicsView>
+#include <QMessageBox>
 #include <QTimer>
 
 #include "shipplayer.h"

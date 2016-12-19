@@ -27,7 +27,7 @@ public:
     Ship();
     Ship(double X, double Y, double angle);
     void setShip();
-    void deleteShip();
+    virtual void deleteShip();
     void reduceHP();
     void checkCollision();
     unsigned int getHP() const;

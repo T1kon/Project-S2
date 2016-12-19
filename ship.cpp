@@ -43,6 +43,7 @@ void Ship::setShip()
 
 void Ship::deleteShip()
 {
+
     Explosion * exp = new Explosion(this->x(), this->y());
     scene()->addItem(exp);
     scene()->removeItem(this);
@@ -100,27 +101,28 @@ void Ship::rotateRight()
 
 void Ship::move()
 {
-
-    if (canMoveF){
-        addAcceleration(1);
-        accelerate();
-    }
-    else if (canMoveB){
-        addAcceleration(-1);
-        slow();
-    }
-    else if (!canMoveF && !canMoveB){
-        accelerate();
-    }
-    if (CanRotateL){
-        rotateLeft();
-    }
-    if (CanRotateR){
-        rotateRight();
-    }
-    checkCollision();
-    //qDebug() << "| Coords:" << x() << " " << y() << fmod(rotation(), 360);
-    this->setPos(this->x() + speedX, this->y() + speedY);
+    if (this->getHP() > 0){
+        if (canMoveF){
+            addAcceleration(1);
+            accelerate();
+        }
+        else if (canMoveB){
+            addAcceleration(-1);
+            slow();
+        }
+        else if (!canMoveF && !canMoveB){
+            accelerate();
+        }
+        if (CanRotateL){
+            rotateLeft();
+        }
+        if (CanRotateR){
+            rotateRight();
+        }
+        checkCollision();
+        //qDebug() << "| Coords:" << x() << " " << y() << fmod(rotation(), 360);
+        this->setPos(this->x() + speedX, this->y() + speedY);
+   }
 }
 
 void Ship::fire()
