@@ -18,9 +18,12 @@ private:
     ShipPlayer * p;
     unsigned int score = 0;
     QString username;
+    QTimer * timer1;
+    QTimer * spawnTimer;
 public:
     Game(QString name);
     QGraphicsScene * scene;
+    void stopTimer();
     int getScore();
    // void keyPressEvent(QKeyEvent *event);
 

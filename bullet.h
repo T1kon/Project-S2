@@ -13,6 +13,7 @@ class Bullet: public QObject, public QGraphicsPixmapItem
 private:
     const double SPEED = 20.0;
     QTimer * lifeTime;
+    QTimer * moveTimer;
 public:
     Bullet(double x, double y, double angle);
 public slots:

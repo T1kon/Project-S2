@@ -18,9 +18,9 @@ private:
     const double MAX_SPEED = 4.0;
     const double ROTATION_SPEED = 1.5;
     const int MAX_HEALTH = 10;
+protected:
     QTimer * timer;
     QTimer * shootTimer;
-protected:
     unsigned int health;
     bool canMoveF, canMoveB, CanRotateL, CanRotateR, CanShoot;
 public:

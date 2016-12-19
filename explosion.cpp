@@ -14,5 +14,6 @@ Explosion::Explosion(double x, double y)
 void Explosion::deleteObject()
 {
     scene()->removeItem(this);
+    delete lifetime;
     delete this;
 }

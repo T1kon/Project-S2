@@ -32,7 +32,7 @@ Game::Game(QString name){
 
     p = new ShipPlayer(5000, 5000, 0);
 
-    QTimer * timer1 = new QTimer();
+    timer1 = new QTimer();
     connect(timer1, SIGNAL(timeout()), this, SLOT(moveCam()));
     timer1->start(1000/12000);
 
@@ -40,11 +40,19 @@ Game::Game(QString name){
     p->setFlag(QGraphicsItem::ItemIsFocusable);
     p->setFocus();
 
-    QTimer * spawnTimer = new QTimer();
+    spawnTimer = new QTimer();
 
     connect(spawnTimer, SIGNAL(timeout()),
             this,SLOT(spawn()));
     spawnTimer->start(1000);
+}
+
+void Game::stopTimer()
+{
+    spawnTimer->stop();
+    timer1->stop();
+    delete timer1;
+    delete spawnTimer;
 }
 
 int Game::getScore()
@@ -91,12 +99,25 @@ void Game::spawn()
         }
     }
     else{
-        gameOver * window = new gameOver(username, score);
-        window->show();
 //        QMessageBox *mb = new QMessageBox;
 //        mb->setWindowTitle("Game over!");
 //        mb->setText("Your score is: " + QString::number(score));
 //        mb->show();
+        foreach (QGraphicsItem * item, scene->items()){
+            if(item->type() == Meteor::Type){
+                dynamic_cast<Meteor*>(item)->reduceHP();
+                return;
+            }
+            else if(item->type() == ShipAI::Type){
+                dynamic_cast<Ship*>(item)->deleteShip();
+                return;
+            }
+        }
+        stopTimer();
+        delete p;
+        delete scene;
+        gameOver * window = new gameOver(username, score);
+        window->show();
         delete this;
     }
 }

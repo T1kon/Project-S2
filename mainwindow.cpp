@@ -21,8 +21,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_playButton_clicked()
 {
     Game * game = new Game(ui->lineEdit->text());
-    this->hide();
     game->show();
+    this->close();
 }
 
 void MainWindow::on_lineEdit_textChanged()

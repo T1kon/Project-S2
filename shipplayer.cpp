@@ -54,6 +54,8 @@ void ShipPlayer::deleteShip()
     scene()->addItem(exp);
     scene()->removeItem(this);
     CanShoot = false;
+    delete timer;
+    delete shootTimer;
 }
 
 int ShipPlayer::type() const

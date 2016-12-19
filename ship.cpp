@@ -47,6 +47,8 @@ void Ship::deleteShip()
     Explosion * exp = new Explosion(this->x(), this->y());
     scene()->addItem(exp);
     scene()->removeItem(this);
+    delete timer;
+    delete shootTimer;
     delete this;
 }
 

@@ -11,7 +11,7 @@ Bullet::Bullet(double x, double y, double angle)
     setOffset(-2.5, -10);
     setRotation(angle);
 
-    QTimer * moveTimer = new QTimer();
+    moveTimer = new QTimer();
     connect(moveTimer, SIGNAL(timeout()), this, SLOT(moveBullet()));
     moveTimer->start(100/6);
 
@@ -43,5 +43,7 @@ void Bullet::moveBullet()
 void Bullet::deleteBullet()
 {
     scene()->removeItem(this);
+    delete lifeTime;
+    delete moveTimer;
     delete this;
 }
