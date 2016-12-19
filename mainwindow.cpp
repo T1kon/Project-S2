@@ -8,14 +8,36 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    this->setFixedSize(256, 200);  
+    this->setFixedSize(256, 300);
     ui->playButton->setEnabled(false);
-    //connect(gameOver::, SIGNAL(gameover()), this, SLOT(newGame());
+    loadScore();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::loadScore()
+{
+    std::string filename = "E:/c++/Project-S2/saves.data";
+    std::ifstream infile(filename);
+    std::string temp[800];
+    int i = 0;
+    if (infile){
+        while(std::getline(infile, temp[i])){
+            for (int j =0; j < temp[i].length(); ++j){
+                temp[i][j] -= 10;
+            }
+            i++;
+        }
+    }
+    infile.close();
+    QString str;
+    for (int j = 0; j < i; ++j){
+        str += QString::fromStdString(temp[j]+'\n');
+    }
+    ui->textBrowser->setText(str);
 }
 
 void MainWindow::on_playButton_clicked()
