@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     shipai.cpp \
     shipplayer.cpp \
     game.cpp \
-    explosion.cpp
+    explosion.cpp \
+    gameover.cpp
 
 HEADERS  += mainwindow.h \
     ship.h \
@@ -30,9 +31,11 @@ HEADERS  += mainwindow.h \
     shipplayer.h \
     game.h \
     counter.h \
-    explosion.h
+    explosion.h \
+    gameover.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    gameover.ui
 
 RESOURCES += \
     res.qrc

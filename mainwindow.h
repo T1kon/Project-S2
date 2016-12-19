@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <game.h>
+#include <gameover.h>
 
 namespace Ui {
 class MainWindow;
@@ -18,6 +19,9 @@ public:
 
 private slots:
     void on_playButton_clicked();
+
+    void on_lineEdit_textChanged();
+    void newGame();
 
 private:
     Ui::MainWindow *ui;

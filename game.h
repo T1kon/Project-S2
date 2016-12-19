@@ -8,6 +8,7 @@
 #include "shipplayer.h"
 #include "meteor.h"
 #include "shipai.h"
+#include "gameover.h"
 #include <ctime>
 #include <cstdlib>
 
@@ -16,11 +17,11 @@ class Game: public QGraphicsView{
 private:
     ShipPlayer * p;
     unsigned int score = 0;
+    QString username;
 public:
-    Game();
-
+    Game(QString name);
     QGraphicsScene * scene;
-
+    int getScore();
    // void keyPressEvent(QKeyEvent *event);
 
 public slots:

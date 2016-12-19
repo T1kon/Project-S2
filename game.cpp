@@ -7,8 +7,9 @@
 #include <math.h>
 
 
-Game::Game(){
+Game::Game(QString name){
 
+    username = name;
     srand(static_cast<unsigned int>(time(NULL)));
 
     setFocusPolicy(Qt::StrongFocus);
@@ -44,6 +45,11 @@ Game::Game(){
     connect(spawnTimer, SIGNAL(timeout()),
             this,SLOT(spawn()));
     spawnTimer->start(1000);
+}
+
+int Game::getScore()
+{
+    return score;
 }
 
 /*&void Game::keyPressEvent(QKeyEvent *event){
@@ -85,10 +91,12 @@ void Game::spawn()
         }
     }
     else{
-        QMessageBox *mb = new QMessageBox;
-        mb->setWindowTitle("Game over!");
-        mb->setText("Your score is: " + QString::number(score));
-        mb->show();
+        gameOver * window = new gameOver(username, score);
+        window->show();
+//        QMessageBox *mb = new QMessageBox;
+//        mb->setWindowTitle("Game over!");
+//        mb->setText("Your score is: " + QString::number(score));
+//        mb->show();
         delete this;
     }
 }

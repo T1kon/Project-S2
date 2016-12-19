@@ -53,6 +53,7 @@ void ShipPlayer::deleteShip()
     Explosion * exp = new Explosion(this->x(), this->y());
     scene()->addItem(exp);
     scene()->removeItem(this);
+    CanShoot = false;
 }
 
 int ShipPlayer::type() const
